@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartKid – Luyện thi lớp 4</title>
+<title>SmartKid – Học vui, luyện giỏi lớp 4</title>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
-:root{--ink:#1f2a44;--muted:#68758d;--blue:#4169e1;--blue2:#3154c8;--bg:#f4f7ff;--card:#fff;--line:#e7ecf5;--green:#15966b;--red:#d94b5b;--yellow:#fff5d8;--shadow:0 12px 35px rgba(36,58,105,.08)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+:root{--ink:#24304f;--muted:#68758d;--blue:#536dfe;--blue2:#4056dc;--bg:#f4f8ff;--card:#fff;--line:#e5eaff;--green:#15966b;--red:#d94b5b;--yellow:#fff5d8;--shadow:0 12px 30px rgba(72,91,170,.10)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 8%,#fff2d9 0,transparent 22%),radial-gradient(circle at 94% 18%,#e9e7ff 0,transparent 23%),var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
 button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
-.topbar{background:linear-gradient(110deg,#3458d4,#6b7cf0);color:white;padding:17px max(22px,calc((100% - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px}
+.topbar{background:linear-gradient(110deg,#536dfe,#7d65e8 58%,#ff8b78);color:white;padding:17px max(22px,calc((100% - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:21px}.logo{width:42px;height:42px;border-radius:14px;background:#fff;color:#4169e1;display:grid;place-items:center;font-size:23px}
 .topbar small{opacity:.85}.wrap{max-width:1160px;margin:30px auto;padding:0 22px}
-.hero{background:linear-gradient(120deg,#fff,#eef2ff);border:1px solid #e4eaff;border-radius:24px;padding:30px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}
+.hero{background:linear-gradient(120deg,#fff8e8 0%,#f0f3ff 55%,#e8fbf7 100%);border:2px solid #fff;border-radius:28px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}
 .hero h1{font-size:30px;margin:0 0 9px}.hero p{margin:0;color:var(--muted);line-height:1.6}.hero-badge{background:#fff;border-radius:20px;padding:16px 20px;text-align:center;box-shadow:var(--shadow);min-width:135px}.hero-badge strong{display:block;font-size:26px;color:var(--blue)}
-.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:var(--shadow);margin-bottom:22px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}.panel{background:var(--card);border:2px solid #edf0ff;border-radius:24px;padding:23px;box-shadow:var(--shadow);margin-bottom:22px}
 h2{font-size:19px;margin:0 0 17px}h3{margin:0 0 10px;font-size:16px}.muted{color:var(--muted)}.small{font-size:13px;color:var(--muted);line-height:1.5}
 .competition-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.comp{border:1px solid var(--line);background:#fff;border-radius:15px;padding:16px;text-align:left;transition:.15s}.comp:hover,.comp.active{border-color:var(--blue);background:#f4f6ff;transform:translateY(-1px)}.comp .emoji{font-size:24px}.comp strong{display:block;margin:8px 0 4px}.comp span{font-size:12px;color:var(--muted)}
+.comp{border:2px solid var(--line);background:linear-gradient(145deg,#fff,#fbfcff);border-radius:20px;padding:18px;text-align:left;transition:.15s}.comp:hover,.comp.active{border-color:var(--blue);background:linear-gradient(145deg,#f2f4ff,#fff);transform:translateY(-3px);box-shadow:0 10px 20px rgba(83,109,254,.12)}.comp .emoji{font-size:24px}.comp strong{display:block;margin:8px 0 4px}.comp span{font-size:12px;color:var(--muted)}
 .field{margin:13px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.field select,.field input,.field textarea{width:100%;border:1px solid #dce3f0;border-radius:11px;padding:11px 12px;background:#fff;color:var(--ink);outline:none}.field select:focus,.field input:focus,.field textarea:focus{border-color:var(--blue)}
-.btn{border-radius:12px;padding:12px 17px;font-weight:700;background:var(--blue);color:#fff}.btn:hover{background:var(--blue2)}.btn.secondary{background:#edf1ff;color:var(--blue)}.btn.ghost{background:#f4f6fa;color:var(--ink)}.btn.danger{background:#fff0f1;color:var(--red)}
+.btn{border-radius:16px;padding:13px 19px;font-weight:700;background:var(--blue);color:#fff}.btn:hover{background:var(--blue2)}.btn.secondary{background:#edf1ff;color:var(--blue)}.btn.ghost{background:#f4f6fa;color:var(--ink)}.btn.danger{background:#fff0f1;color:var(--red)}
 .full{width:100%}.note{background:#fff8e6;border:1px solid #f3e2ad;padding:12px 14px;border-radius:12px;color:#765c16;font-size:13px;line-height:1.5}
 .hidden{display:none!important}.exam-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.timer{font-size:21px;font-weight:800;color:var(--blue);background:#eef2ff;padding:9px 14px;border-radius:12px}.progress{height:8px;background:#edf0f6;border-radius:20px;overflow:hidden;margin:15px 0}.progress>div{height:100%;background:linear-gradient(90deg,#4169e1,#7a8cff);width:0}
-.qnav{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.qnav button{width:34px;height:34px;border-radius:9px;background:#f0f2f7;color:#5d6880;font-size:13px}.qnav button.current{background:var(--blue);color:white}.qnav button.answered{background:#dff5ec;color:#08744f}
-.qtext{font-size:20px;line-height:1.55;font-weight:700;margin:22px 0}.qmeta{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-.options{display:grid;gap:10px}.option{border:1.5px solid var(--line);padding:13px 15px;border-radius:13px;display:flex;gap:11px;align-items:center;text-align:left;background:white;color:var(--ink);line-height:1.45}.option:hover{border-color:#9aabf5;background:#fafbff}.option.selected{border-color:var(--blue);background:#f0f3ff}.letter{width:29px;height:29px;border-radius:9px;background:#eef1f8;display:grid;place-items:center;font-weight:800;flex-shrink:0}.option.selected .letter{background:var(--blue);color:#fff}
+.qnav{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.qnav button{width:38px;height:38px;border-radius:12px;background:#f0f2f7;color:#5d6880;font-size:13px}.qnav button.current{background:var(--blue);color:white}.qnav button.answered{background:#dff5ec;color:#08744f}
+.qtext{font-size:22px;line-height:1.6;font-weight:700;margin:22px 0}.question-image{margin:12px 0 20px}.question-image img{max-width:100%;max-height:340px;object-fit:contain;border-radius:18px;border:1px solid var(--line);background:#fff;padding:6px}.qmeta{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.options{display:grid;gap:10px}.option{border:2px solid var(--line);padding:15px 17px;border-radius:17px;display:flex;gap:11px;align-items:center;text-align:left;background:white;color:var(--ink);line-height:1.45}.option:hover{border-color:#9aabf5;background:#fafbff;transform:translateY(-1px)}.option.selected{border-color:var(--blue);background:#f0f3ff}.letter{width:29px;height:29px;border-radius:9px;background:#eef1f8;display:grid;place-items:center;font-weight:800;flex-shrink:0}.option.selected .letter{background:var(--blue);color:#fff}
 .answer-input{max-width:360px;padding:13px;border:1.5px solid #dce3f0;border-radius:12px;width:100%}
 .exam-actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
 .result-score{font-size:46px;font-weight:900;color:var(--blue);margin:8px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#f7f8fc;border-radius:13px;padding:13px;text-align:center}.stat strong{font-size:22px;display:block}.review{border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}.review.good{border-left:4px solid var(--green)}.review.bad{border-left:4px solid var(--red)}.review p{line-height:1.5}.admin-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.footer{text-align:center;color:#8791a6;font-size:12px;padding:10px 0 30px}
@@ -34,12 +35,12 @@ h2{font-size:19px;margin:0 0 17px}h3{margin:0 0 10px;font-size:16px}.muted{color
 <body>
 <header class="topbar">
   <div class="brand"><div class="logo">✦</div><div>SmartKid <small style="display:block;font-size:11px;font-weight:500">Cùng con chinh phục tri thức</small></div></div>
-  <div style="font-size:13px">Khu luyện thi · Khối lớp 4</div>
+  <div style="font-size:13px">🌈 Góc học tập vui nhộn · Lớp 4</div>
 </header>
 <main class="wrap">
   <section id="home">
     <div class="hero">
-      <div><h1>Hôm nay mình cùng luyện tập nhé! 🚀</h1><p>Chọn cuộc thi, chọn môn học và bắt đầu thử sức.<br>Hoàn thành bài thi để xem điểm số, đáp án và lời giải.</p></div>
+      <div><h1>Sẵn sàng chinh phục thử thách chưa? 🚀</h1><p>Chọn cuộc thi, chọn môn học và bắt đầu thử sức.<br>Hoàn thành bài thi để xem điểm số, đáp án và lời giải.</p></div>
       <div class="hero-badge"><strong>✏️ Lớp 4</strong><span class="small">Học vui – tiến bộ mỗi ngày</span></div>
     </div>
     <div class="grid">
@@ -68,7 +69,7 @@ h2{font-size:19px;margin:0 0 17px}h3{margin:0 0 10px;font-size:16px}.muted{color
           <p class="small">2. Đọc kỹ câu hỏi, chọn đáp án hoặc nhập kết quả.</p>
           <p class="small">3. Có thể chuyển qua lại giữa các câu trước khi nộp.</p>
           <p class="small">4. Sau khi nộp bài, xem câu đúng, câu sai và lời giải.</p>
-          <div class="note">Bộ câu hỏi đi kèm hiện là dữ liệu mẫu để kiểm thử website. Có thể bổ sung ngân hàng câu hỏi riêng bằng chức năng nhập JSON ở cuối trang.</div>
+          <div class="note">Mỗi ngày luyện một chút, con sẽ tiến bộ thật nhiều! Phụ huynh có thể bổ sung câu hỏi bằng file Excel ở phần quản lý bên dưới.</div>
         </section>
         <section class="panel">
           <h2>📈 Kết quả gần đây</h2>
@@ -77,12 +78,13 @@ h2{font-size:19px;margin:0 0 17px}h3{margin:0 0 10px;font-size:16px}.muted{color
       </div>
     </div>
     <section class="panel">
-      <h2>🛠️ Quản lý ngân hàng câu hỏi</h2>
-      <p class="small">Phụ huynh có thể xuất dữ liệu hiện tại để sao lưu hoặc nhập thêm câu hỏi theo định dạng JSON. Dữ liệu được lưu trên trình duyệt đang sử dụng.</p>
+      <h2>🧩 Góc dành cho phụ huynh – Ngân hàng câu hỏi</h2>
+      <p class="small">Tải mẫu Excel, nhập câu hỏi theo từng môn rồi đưa file lên đây. SmartKid sẽ tự đọc và thêm câu hỏi vào ngân hàng.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0">
-        <button class="btn secondary" id="exportBtn">Xuất ngân hàng câu hỏi</button>
-        <button class="btn ghost" id="templateBtn">Tải mẫu JSON</button>
-        <label class="btn ghost" for="importFile">Nhập JSON</label><input id="importFile" type="file" accept=".json,application/json" class="hidden">
+        <a class="btn secondary" href="mau_cau_hoi_smartkid.xlsx" download style="text-decoration:none">⬇ Tải mẫu Excel</a>
+        <label class="btn" for="excelFile">📥 Nhập file Excel</label><input id="excelFile" type="file" accept=".xlsx,.xls" class="hidden">
+        <button class="btn ghost" id="exportBtn">Xuất ngân hàng JSON</button>
+        <label class="btn ghost" for="importFile">Nhập JSON (nâng cao)</label><input id="importFile" type="file" accept=".json,application/json" class="hidden">
       </div>
       <details>
         <summary style="cursor:pointer;font-weight:700">Thêm nhanh một câu hỏi</summary>
@@ -110,7 +112,7 @@ h2{font-size:19px;margin:0 0 17px}h3{margin:0 0 10px;font-size:16px}.muted{color
       <div class="exam-head"><span class="small" id="progressText">Câu 1 / 30</span><span class="small" id="answeredText">Đã trả lời: 0</span></div>
       <div class="qnav" id="qnav"></div>
       <div class="qmeta" id="qTopic">CHỦ ĐỀ</div>
-      <div class="qtext" id="questionText"></div>
+      <div class="qtext" id="questionText"></div><div id="questionImage" class="question-image hidden"></div>
       <div id="answerArea" class="options"></div>
       <div class="exam-actions"><button class="btn ghost" id="prevBtn">← Câu trước</button><button class="btn secondary" id="nextBtn">Câu tiếp theo →</button></div>
       <button class="btn full" style="margin-top:18px" id="submitBtn">Nộp bài</button>
@@ -265,6 +267,35 @@ $("exportBtn").onclick=()=>download("smartkid-question-bank.json",JSON.stringify
 $("templateBtn").onclick=()=>download("mau-cau-hoi.json",JSON.stringify([{id:"custom-001",subject:"Toán",topic:"Chủ đề",difficulty:"Cơ bản",type:"choice",q:"Nội dung câu hỏi?",opts:["A","B","C","D"],a:"A",ex:"Giải thích đáp án."}],null,2),"application/json");
 function download(name,data,type){const blob=new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
 $("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!Array.isArray(data)||!data.every(q=>q.id&&q.subject&&q.q&&q.a))throw new Error("Thiếu trường bắt buộc.");const ids=new Set(bank.map(q=>q.id));let added=0;data.forEach(q=>{if(!ids.has(q.id)){bank.push(q);ids.add(q.id);added++}});saveBank();$("adminMessage").textContent=`Đã nhập ${added} câu hỏi mới.`}catch(err){$("adminMessage").textContent="Không nhập được: "+err.message}e.target.value=""};
+$("excelFile").onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;
+ try{
+  if(typeof XLSX==="undefined")throw new Error("Không tải được bộ đọc Excel. Hãy kiểm tra kết nối Internet rồi thử lại.");
+  const data=new Uint8Array(await f.arrayBuffer());const book=XLSX.read(data,{type:"array"});
+  const subjectSheets=["Toán","Tiếng Việt","Tiếng Anh","Toán tiếng Anh"];
+  const ids=new Set(bank.map(q=>String(q.id)));let added=0,skipped=0,errors=[];
+  for(const sheetName of subjectSheets){
+   if(!book.Sheets[sheetName])continue;
+   const rows=XLSX.utils.sheet_to_json(book.Sheets[sheetName],{defval:""});
+   rows.forEach((r,i)=>{
+    const q=String(r["Nội dung câu hỏi"]||"").trim();if(!q)return;
+    const subject=sheetName;const answer=String(r["Đáp án đúng"]||"").trim();
+    if(!answer){errors.push(`${sheetName}, dòng ${i+2}: thiếu đáp án đúng`);return;}
+    const opts=["Phương án A","Phương án B","Phương án C","Phương án D"].map(k=>String(r[k]||"").trim()).filter(Boolean);
+    const type=opts.length?"choice":"text";
+    if(type==="choice"&&!opts.includes(answer)){errors.push(`${sheetName}, dòng ${i+2}: đáp án đúng không khớp A–D`);return;}
+    let id=String(r["Mã câu hỏi"]||"").trim();if(!id)id=`excel-${Date.now()}-${added}-${i}`;
+    if(ids.has(id)){skipped++;return;}
+    const item={id,subject,competition:String(r["Cuộc thi"]||"Ôn tập trên lớp").trim(),topic:String(r["Chủ đề"]||"Chưa phân loại").trim(),difficulty:String(r["Độ khó"]||"Cơ bản").trim(),type,q,opts,a:answer,ex:String(r["Giải thích / lời giải"]||"").trim(),image:String(r["URL hình ảnh"]||"").trim(),time:Number(r["Thời gian gợi ý (giây)"]||60)};
+    bank.push(item);ids.add(id);added++;
+   });
+  }
+  if(!added&&!skipped&&!errors.length)throw new Error("Không tìm thấy câu hỏi. Hãy nhập dữ liệu trong các sheet môn học, bắt đầu từ dòng 2.");
+  saveBank();let msg=`Đã thêm ${added} câu hỏi.`;if(skipped)msg+=` Bỏ qua ${skipped} câu trùng mã.`;if(errors.length)msg+=` Có ${errors.length} dòng cần kiểm tra: `+errors.slice(0,4).join("; ");
+  $("adminMessage").textContent=msg;
+ }catch(err){$("adminMessage").textContent="Không nhập được Excel: "+err.message;}
+ e.target.value="";
+};
 $("addQuestionBtn").onclick=()=>{const q=$("newQuestion").value.trim(),a=$("newAnswer").value.trim();if(!q||!a){$("adminMessage").textContent="Cần nhập đề bài và đáp án.";return}const opts=$("newOptions").value.split("\n").map(x=>x.trim()).filter(Boolean);const item={id:"user-"+Date.now(),subject:$("newSubject").value,topic:$("newTopic").value.trim()||"Chưa phân loại",difficulty:$("newDifficulty").value,type:opts.length?"choice":"text",q,opts,a,ex:$("newExplanation").value.trim()};bank.push(item);saveBank();$("newQuestion").value="";$("newAnswer").value="";$("newOptions").value="";$("newExplanation").value="";$("adminMessage").textContent="Đã thêm câu hỏi vào ngân hàng."};
 initSelectors();renderRecent();
 </script>
